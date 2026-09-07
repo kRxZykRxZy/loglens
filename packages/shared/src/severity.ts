@@ -1,0 +1,1 @@
+export const severities=['debug','info','warn','error','fatal'] as const; export type Severity=typeof severities[number]; export const isSeverity=(v:unknown):v is Severity=>typeof v==='string'&&(severities as readonly string[]).includes(v);
