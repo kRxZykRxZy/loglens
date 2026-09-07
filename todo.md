@@ -112,10 +112,10 @@ Status legend:
 - [x] Architecture document.
 - [x] Agent/developer instructions.
 - [x] Master TODO.
-- [ ] Add API conventions document.
-- [ ] Add frontend conventions document.
-- [ ] Add local-development guide.
-- [ ] Add deployment guide.
+- [x] Add API conventions document.
+- [x] Add frontend conventions document.
+- [x] Add local-development guide.
+- [x] Add deployment guide.
 
 ---
 
