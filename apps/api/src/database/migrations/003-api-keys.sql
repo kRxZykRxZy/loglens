@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS api_keys(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,name text not null,key_hash text unique not null,key_prefix text not null,created_at timestamptz not null default now()); CREATE INDEX IF NOT EXISTS api_keys_project_idx ON api_keys(project_id);
