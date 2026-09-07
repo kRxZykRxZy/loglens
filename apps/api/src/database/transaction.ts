@@ -1,0 +1,1 @@
+import {pool} from './pool.js'; export async function transaction<T>(fn:(client:import('pg').PoolClient)=>Promise<T>){const c=await pool.connect(); try{await c.query('begin'); const value=await fn(c); await c.query('commit'); return value;}catch(e){await c.query('rollback');throw e}finally{c.release()}}
