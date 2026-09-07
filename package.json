@@ -1,5 +1,1 @@
-{
-  "name":"loglens","version":"0.2.0","private":true,"type":"module","workspaces":["apps/*","packages/*"],
-  "scripts":{"dev":"npm run dev:api","dev:api":"npm --workspace apps/api run dev","dev:web":"npm --workspace apps/web run dev","build":"npm run build:web && npm run build:api","build:web":"npm --workspace apps/web run build","build:api":"npm --workspace apps/api run build","typecheck":"npm --workspace apps/api run typecheck && npm --workspace apps/web run typecheck"},
-  "engines":{"node":">=20"}
-}
+{"name":"loglens","version":"0.2.0","private":true,"type":"module","workspaces":["apps/*","packages/*"],"scripts":{"dev":"npm run dev:api","dev:api":"npm --workspace apps/api run dev","dev:web":"npm --workspace apps/web run dev","build":"npm run build:web && npm run build:api","build:web":"npm --workspace apps/web run build","build:api":"npm --workspace apps/api run build","start":"npm --workspace apps/api run start","typecheck":"npm --workspace apps/api run typecheck && npm --workspace apps/web run typecheck"},"engines":{"node":">=20"}}
