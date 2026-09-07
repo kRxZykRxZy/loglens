@@ -1,0 +1,1 @@
+export type Session={id:string;userId:string;tokenHash:string;expiresAt:Date}; export type SessionRecord=Session&{createdAt:Date};
