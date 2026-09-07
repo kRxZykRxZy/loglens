@@ -1,1 +1,7 @@
-const port=Number(process.env.PORT??3000); export const env={port,databaseUrl:process.env.DATABASE_URL??'',sessionCookie:process.env.SESSION_COOKIE??'loglens_session',nodeEnv:process.env.NODE_ENV??'development'};
+const port = Number(process.env.PORT ?? 3000);
+export const env = {
+  port,
+  databaseUrl: process.env.DATABASE_URL ?? '',
+  sessionCookie: process.env.SESSION_COOKIE ?? 'loglens_session',
+  nodeEnv: process.env.NODE_ENV ?? 'development',
+};

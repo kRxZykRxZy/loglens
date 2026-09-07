@@ -1,1 +1,28 @@
-import {query} from './query.js'; export async function migrate(){await query(`CREATE TABLE IF NOT EXISTS users(id uuid primary key,email text unique not null,password_hash text not null,created_at timestamptz not null default now());`); await query(`CREATE TABLE IF NOT EXISTS sessions(id uuid primary key,user_id uuid not null references users(id) on delete cascade,token_hash text unique not null,expires_at timestamptz not null,created_at timestamptz not null default now());`); await query(`CREATE TABLE IF NOT EXISTS projects(id uuid primary key,user_id uuid not null references users(id) on delete cascade,name text not null,created_at timestamptz not null default now());`); await query(`CREATE TABLE IF NOT EXISTS api_keys(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,name text not null,key_hash text unique not null,key_prefix text not null,created_at timestamptz not null default now());`); await query(`CREATE TABLE IF NOT EXISTS events(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,severity text not null,message text not null,metadata jsonb not null default '{}',stack_trace text,environment text,service text,source text,request_id text,created_at timestamptz not null default now());`); await query(`CREATE TABLE IF NOT EXISTS event_groups(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,fingerprint text not null,title text not null,first_seen_at timestamptz not null default now(),last_seen_at timestamptz not null default now(),occurrences bigint not null default 0);`); await query(`CREATE UNIQUE INDEX IF NOT EXISTS event_groups_fingerprint_idx ON event_groups(project_id,fingerprint);`); await query(`CREATE INDEX IF NOT EXISTS sessions_token_idx ON sessions(token_hash);`); await query(`CREATE INDEX IF NOT EXISTS events_project_time_idx ON events(project_id,created_at desc);`);}
+import { query } from './query.js';
+export async function migrate() {
+  await query(
+    `CREATE TABLE IF NOT EXISTS users(id uuid primary key,email text unique not null,password_hash text not null,created_at timestamptz not null default now());`,
+  );
+  await query(
+    `CREATE TABLE IF NOT EXISTS sessions(id uuid primary key,user_id uuid not null references users(id) on delete cascade,token_hash text unique not null,expires_at timestamptz not null,created_at timestamptz not null default now());`,
+  );
+  await query(
+    `CREATE TABLE IF NOT EXISTS projects(id uuid primary key,user_id uuid not null references users(id) on delete cascade,name text not null,created_at timestamptz not null default now());`,
+  );
+  await query(
+    `CREATE TABLE IF NOT EXISTS api_keys(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,name text not null,key_hash text unique not null,key_prefix text not null,created_at timestamptz not null default now());`,
+  );
+  await query(
+    `CREATE TABLE IF NOT EXISTS events(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,severity text not null,message text not null,metadata jsonb not null default '{}',stack_trace text,environment text,service text,source text,request_id text,created_at timestamptz not null default now());`,
+  );
+  await query(
+    `CREATE TABLE IF NOT EXISTS event_groups(id uuid primary key,project_id uuid not null references projects(id) on delete cascade,fingerprint text not null,title text not null,first_seen_at timestamptz not null default now(),last_seen_at timestamptz not null default now(),occurrences bigint not null default 0);`,
+  );
+  await query(
+    `CREATE UNIQUE INDEX IF NOT EXISTS event_groups_fingerprint_idx ON event_groups(project_id,fingerprint);`,
+  );
+  await query(`CREATE INDEX IF NOT EXISTS sessions_token_idx ON sessions(token_hash);`);
+  await query(
+    `CREATE INDEX IF NOT EXISTS events_project_time_idx ON events(project_id,created_at desc);`,
+  );
+}

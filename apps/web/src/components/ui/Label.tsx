@@ -1,1 +1,3 @@
-export function Label({children}:{children:string}){return <label className="text-sm font-medium opacity-80">{children}</label>}
+export function Label({ children }: { children: string }) {
+  return <label className="text-sm font-medium opacity-80">{children}</label>;
+}

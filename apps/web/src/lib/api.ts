@@ -1,1 +1,9 @@
-export async function api<T>(path:string,init:RequestInit={}):Promise<T>{const r=await fetch(`/api${path}`,{...init,headers:{'Content-Type':'application/json',...(init.headers??{})},credentials:'include'}); if(!r.ok)throw new Error((await r.json().catch(()=>({error:'Request failed'}))).error); return r.status===204?undefined as T:r.json();}
+export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
+  const r = await fetch(`/api${path}`, {
+    ...init,
+    headers: { 'Content-Type': 'application/json', ...(init.headers ?? {}) },
+    credentials: 'include',
+  });
+  if (!r.ok) throw new Error((await r.json().catch(() => ({ error: 'Request failed' }))).error);
+  return r.status === 204 ? (undefined as T) : r.json();
+}

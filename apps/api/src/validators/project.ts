@@ -1,1 +1,6 @@
-import {AppError} from '../errors/app-error.js'; export const projectName=(value:unknown)=>{if(typeof value!=='string'||!value.trim()||value.trim().length>100)throw new AppError(400,'Project name is required','INVALID_PROJECT');return value.trim()};
+import { AppError } from '../errors/app-error.js';
+export const projectName = (value: unknown) => {
+  if (typeof value !== 'string' || !value.trim() || value.trim().length > 100)
+    throw new AppError(400, 'Project name is required', 'INVALID_PROJECT');
+  return value.trim();
+};

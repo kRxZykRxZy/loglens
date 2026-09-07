@@ -1,1 +1,12 @@
-import {hashToken} from '../auth/tokens.js'; import {findSession,deleteSession} from '../repositories/session-repository.js'; export async function resolve(token?:string){if(!token)return null; const s=await findSession(hashToken(token)); if(!s||new Date(s.expires_at)<=new Date()){if(s) await deleteSession(hashToken(token)); return null;} return s.user_id;} export const revoke=(token:string)=>deleteSession(hashToken(token));
+import { hashToken } from '../auth/tokens.js';
+import { findSession, deleteSession } from '../repositories/session-repository.js';
+export async function resolve(token?: string) {
+  if (!token) return null;
+  const s = await findSession(hashToken(token));
+  if (!s || new Date(s.expires_at) <= new Date()) {
+    if (s) await deleteSession(hashToken(token));
+    return null;
+  }
+  return s.user_id;
+}
+export const revoke = (token: string) => deleteSession(hashToken(token));

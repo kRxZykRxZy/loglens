@@ -1,1 +1,9 @@
-export type EventGroup={id:string;projectId:string;fingerprint:string;title:string;firstSeenAt:Date;lastSeenAt:Date;occurrences:number};
+export type EventGroup = {
+  id: string;
+  projectId: string;
+  fingerprint: string;
+  title: string;
+  firstSeenAt: Date;
+  lastSeenAt: Date;
+  occurrences: number;
+};

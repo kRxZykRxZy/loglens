@@ -98,10 +98,10 @@ Large domains should be decomposed into cohesive modules. A feature may contain 
 Run:
 
 ```bash
-npm install
-npm run typecheck
-npm run lint
-npm run build
+pnpm install
+pnpm run typecheck
+pnpm run lint
+pnpm run build
 ```
 
 For a feature with tests, also run the relevant test command and the full suite before merging.
@@ -375,6 +375,8 @@ chore: update eslint flat config
 ```
 
 Do not mix unrelated refactors into feature commits unless the refactor is required for correctness.
+
+Whenever a `todo.md` checklist item is ticked off (`[x]`), immediately push the completed work to the remote GitHub repository (`origin`) before moving on to the next item. Use a focused commit that matches the completed item, then `git push`. Resume the next todo item only after the push succeeds.
 
 ## 22. PR / review checklist
 

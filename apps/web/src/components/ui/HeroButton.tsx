@@ -1,1 +1,4 @@
-import {Button} from '@heroui/react'; export function HeroButton(){return <Button variant="flat">HeroUI action</Button>}
+import { Button } from '@heroui/react';
+export function HeroButton() {
+  return <Button variant="flat">HeroUI action</Button>;
+}

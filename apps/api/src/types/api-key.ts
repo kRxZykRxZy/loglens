@@ -1,1 +1,7 @@
-export type ApiKey={id:string;projectId:string;name:string;prefix:string;createdAt:Date};
+export type ApiKey = {
+  id: string;
+  projectId: string;
+  name: string;
+  prefix: string;
+  createdAt: Date;
+};

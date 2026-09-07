@@ -340,10 +340,10 @@ The `watch` command should use a streaming transport when available and fall bac
 
 Initial product targets:
 
-| Plan | Projects | Events/month | Retention | Alerts |
-|---|---:|---:|---:|---|
-| Free | 1 | 10,000 | 3 days | Limited |
-| Pro | 10 | 500,000 | 30 days | Yes |
+| Plan | Projects | Events/month | Retention | Alerts  |
+| ---- | -------: | -----------: | --------: | ------- |
+| Free |        1 |       10,000 |    3 days | Limited |
+| Pro  |       10 |      500,000 |   30 days | Yes     |
 
 Quota checks should be server-side and should not depend on UI state. Billing state should come from the payment provider and be cached locally for resilient authorization checks.
 
@@ -436,33 +436,43 @@ Prefer several cohesive modules over one giant file. The target is not file coun
 ## 20. Phase progression
 
 ### Phase 1 — Foundation
+
 Repository structure, Node/TypeScript, Vite/React frontend, Express API, shared contracts, build/dev tooling, linting, formatting, baseline UI shell.
 
 ### Phase 2 — Database
+
 Migrations, PostgreSQL access layer, domain schema, indexes, repositories, transaction support, migration runner, test database strategy.
 
 ### Phase 3 — Authentication
+
 Registration, login, logout, current-user lookup, session lifecycle, password security, validation, authorization middleware, account UI.
 
 ### Phase 4 — Projects and API keys
+
 Project CRUD, ownership, slugging, API-key creation/revocation/rotation, masked secrets, project settings UI.
 
 ### Phase 5 — Ingestion
+
 Single/bulk ingestion, schema validation, normalization, API-key auth, quotas, rate limiting, persistence, SDK support.
 
 ### Phase 6 — Dashboard
+
 Project overview, event/error counts, charts, recent events, time ranges, environment/service filters.
 
 ### Phase 7 — Log explorer
+
 Search, filters, sorting, pagination/cursors, event detail drawer/page, JSON metadata, stack trace rendering, deep links.
 
 ### Phase 8 — Errors and alerts
+
 Error grouping, group pages, fingerprints, alert rules, alert evaluations, delivery workers, webhook/email integrations.
 
 ### Phase 9 — CLI/TUI
+
 Authentication, projects, logs, errors, watch mode, config files, terminal UX, retries, API client reuse.
 
 ### Phase 10 — Production and monetization
+
 Usage accounting, quotas, subscriptions, billing, abuse prevention, data retention, cleanup jobs, backups, CI/CD, observability, documentation, launch readiness.
 
 ## 21. Definition of done for a phase

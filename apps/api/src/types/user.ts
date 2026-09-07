@@ -1,1 +1,2 @@
-export type User={id:string;email:string;createdAt:string}; export type UserRow={id:string;email:string;password_hash:string;created_at:Date};
+export type User = { id: string; email: string; createdAt: string };
+export type UserRow = { id: string; email: string; password_hash: string; created_at: Date };

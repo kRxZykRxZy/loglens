@@ -1,1 +1,29 @@
-import {query} from '../database/query.js'; import type {EventInput} from '../types/event.js'; export async function insertEvent(id:string,projectId:string,e:EventInput){return (await query('insert into events(id,project_id,severity,message,metadata,stack_trace,environment,service,source,request_id) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning *',[id,projectId,e.severity,e.message,e.metadata??{},e.stackTrace??null,e.environment??null,e.service??null,e.source??null,e.requestId??null])).rows[0];} export async function recentEvents(projectId:string,limit=50){return (await query('select * from events where project_id=$1 order by created_at desc limit $2',[projectId,limit])).rows;}
+import { query } from '../database/query.js';
+import type { EventInput } from '../types/event.js';
+export async function insertEvent(id: string, projectId: string, e: EventInput) {
+  return (
+    await query(
+      'insert into events(id,project_id,severity,message,metadata,stack_trace,environment,service,source,request_id) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning *',
+      [
+        id,
+        projectId,
+        e.severity,
+        e.message,
+        e.metadata ?? {},
+        e.stackTrace ?? null,
+        e.environment ?? null,
+        e.service ?? null,
+        e.source ?? null,
+        e.requestId ?? null,
+      ],
+    )
+  ).rows[0];
+}
+export async function recentEvents(projectId: string, limit = 50) {
+  return (
+    await query('select * from events where project_id=$1 order by created_at desc limit $2', [
+      projectId,
+      limit,
+    ])
+  ).rows;
+}

@@ -1,1 +1,9 @@
-export const tables=['users','sessions','projects','api_keys','events','event_groups'] as const; export type TableName=typeof tables[number];
+export const tables = [
+  'users',
+  'sessions',
+  'projects',
+  'api_keys',
+  'events',
+  'event_groups',
+] as const;
+export type TableName = (typeof tables)[number];

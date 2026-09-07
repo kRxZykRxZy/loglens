@@ -1,1 +1,17 @@
-import express from 'express'; import {apiRouter} from './routes/api-router.js'; import {requestId} from './middleware/request-id.js'; import {notFound} from './middleware/not-found.js'; import {errorHandler} from './errors/error-handler.js'; import {frontend} from './middleware/frontend.js'; export const createApp=()=>{const app=express(); app.disable('x-powered-by'); app.use(requestId); app.use(express.json({limit:'1mb'})); app.use('/api',apiRouter); app.use(frontend); app.use(notFound); app.use(errorHandler); return app;};
+import express from 'express';
+import { apiRouter } from './routes/api-router.js';
+import { requestId } from './middleware/request-id.js';
+import { notFound } from './middleware/not-found.js';
+import { errorHandler } from './errors/error-handler.js';
+import { frontend } from './middleware/frontend.js';
+export const createApp = () => {
+  const app = express();
+  app.disable('x-powered-by');
+  app.use(requestId);
+  app.use(express.json({ limit: '1mb' }));
+  app.use('/api', apiRouter);
+  app.use(frontend);
+  app.use(notFound);
+  app.use(errorHandler);
+  return app;
+};

@@ -1,1 +1,28 @@
-import {randomUUID} from 'node:crypto'; import {AppError} from '../errors/app-error.js'; import {hashPassword,verifyPassword} from '../auth/passwords.js'; import {createToken,hashToken} from '../auth/tokens.js'; import {createUser,findUserByEmail} from '../repositories/user-repository.js'; import {createSession} from '../repositories/session-repository.js'; export async function register(email:string,password:string){if(await findUserByEmail(email)) throw new AppError(409,'Email already registered','EMAIL_EXISTS'); const user=await createUser(randomUUID(),email,await hashPassword(password)); return issue(user.id,user.email);} export async function login(email:string,password:string){const user=await findUserByEmail(email); if(!user||!(await verifyPassword(password,user.password_hash))) throw new AppError(401,'Invalid credentials','INVALID_CREDENTIALS'); return issue(user.id,user.email);} async function issue(id:string,email:string){const token=createToken(); await createSession(randomUUID(),id,hashToken(token),new Date(Date.now()+1000*60*60*24*30)); return {token,user:{id,email}};}
+import { randomUUID } from 'node:crypto';
+import { AppError } from '../errors/app-error.js';
+import { hashPassword, verifyPassword } from '../auth/passwords.js';
+import { createToken, hashToken } from '../auth/tokens.js';
+import { createUser, findUserByEmail } from '../repositories/user-repository.js';
+import { createSession } from '../repositories/session-repository.js';
+export async function register(email: string, password: string) {
+  if (await findUserByEmail(email))
+    throw new AppError(409, 'Email already registered', 'EMAIL_EXISTS');
+  const user = await createUser(randomUUID(), email, await hashPassword(password));
+  return issue(user.id, user.email);
+}
+export async function login(email: string, password: string) {
+  const user = await findUserByEmail(email);
+  if (!user || !(await verifyPassword(password, user.password_hash)))
+    throw new AppError(401, 'Invalid credentials', 'INVALID_CREDENTIALS');
+  return issue(user.id, user.email);
+}
+async function issue(id: string, email: string) {
+  const token = createToken();
+  await createSession(
+    randomUUID(),
+    id,
+    hashToken(token),
+    new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+  );
+  return { token, user: { id, email } };
+}

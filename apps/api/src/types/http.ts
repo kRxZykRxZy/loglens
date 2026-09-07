@@ -1,1 +1,3 @@
-import type {Request} from 'express'; export type AuthenticatedRequest=Request & {userId?:string}; export type ApiErrorBody={error:string;code?:string};
+import type { Request } from 'express';
+export type AuthenticatedRequest = Request & { userId?: string };
+export type ApiErrorBody = { error: string; code?: string };

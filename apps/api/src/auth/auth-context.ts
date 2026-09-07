@@ -1,1 +1,1 @@
-export type AuthContext={userId:string;sessionId?:string};
+export type AuthContext = { userId: string; sessionId?: string };

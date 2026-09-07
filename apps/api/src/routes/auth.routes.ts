@@ -1,1 +1,9 @@
-import {Router} from 'express'; import {register,login,logout} from '../controllers/auth-controller.js'; import {me} from '../controllers/me-controller.js'; import {requireAuth} from '../middleware/require-auth.js'; export const authRoutes=Router(); authRoutes.post('/register',register); authRoutes.post('/login',login); authRoutes.post('/logout',logout); authRoutes.get('/me',requireAuth,me);
+import { Router } from 'express';
+import { register, login, logout } from '../controllers/auth-controller.js';
+import { me } from '../controllers/me-controller.js';
+import { requireAuth } from '../middleware/require-auth.js';
+export const authRoutes = Router();
+authRoutes.post('/register', register);
+authRoutes.post('/login', login);
+authRoutes.post('/logout', logout);
+authRoutes.get('/me', requireAuth, me);

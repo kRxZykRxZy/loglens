@@ -1,1 +1,8 @@
-import {Router} from 'express'; import {healthRoutes} from './health.routes.js'; import {authRoutes} from './auth.routes.js'; import {projectRoutes} from './project.routes.js'; export const apiRouter=Router(); apiRouter.use(healthRoutes); apiRouter.use('/auth',authRoutes); apiRouter.use('/projects',projectRoutes);
+import { Router } from 'express';
+import { healthRoutes } from './health.routes.js';
+import { authRoutes } from './auth.routes.js';
+import { projectRoutes } from './project.routes.js';
+export const apiRouter = Router();
+apiRouter.use(healthRoutes);
+apiRouter.use('/auth', authRoutes);
+apiRouter.use('/projects', projectRoutes);

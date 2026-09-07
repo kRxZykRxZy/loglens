@@ -1,1 +1,17 @@
-import {query} from '../database/query.js'; export async function listProjects(userId:string){return (await query('select id,name,created_at from projects where user_id=$1 order by created_at desc',[userId])).rows;} export async function createProject(id:string,userId:string,name:string){return (await query('insert into projects(id,user_id,name) values($1,$2,$3) returning id,name,created_at',[id,userId,name])).rows[0];}
+import { query } from '../database/query.js';
+export async function listProjects(userId: string) {
+  return (
+    await query(
+      'select id,name,created_at from projects where user_id=$1 order by created_at desc',
+      [userId],
+    )
+  ).rows;
+}
+export async function createProject(id: string, userId: string, name: string) {
+  return (
+    await query(
+      'insert into projects(id,user_id,name) values($1,$2,$3) returning id,name,created_at',
+      [id, userId, name],
+    )
+  ).rows[0];
+}
