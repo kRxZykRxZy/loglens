@@ -1,0 +1,1 @@
+export const daysFromNow=(days:number)=>new Date(Date.now()+days*86400000); export const isExpired=(date:Date)=>date.getTime()<=Date.now();
