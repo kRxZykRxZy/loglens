@@ -33,6 +33,8 @@ const start = async () => {
 };
 
 start().catch((err) => {
-  logger.error('Failed to start LogLens API', { error: err instanceof Error ? err.message : String(err) });
+  logger.error('Failed to start LogLens API', {
+    error: err instanceof Error ? err.message : String(err),
+  });
   process.exit(1);
 });

@@ -38,7 +38,11 @@ describe('requireAuth', () => {
     vi.mocked(extractBearerToken).mockReturnValue('abc.def.ghi');
     vi.mocked(verifyAccessToken).mockResolvedValue(null);
     const next = vi.fn();
-    await requireAuth({ headers: { authorization: 'Bearer abc.def.ghi' } } as Request, mockRes(), next);
+    await requireAuth(
+      { headers: { authorization: 'Bearer abc.def.ghi' } } as Request,
+      mockRes(),
+      next,
+    );
     expect(next).toHaveBeenCalledTimes(1);
     const err = next.mock.calls[0][0] as { status: number; code: string };
     expect(err.status).toBe(401);
@@ -46,7 +50,10 @@ describe('requireAuth', () => {
   });
 
   it('attaches the user id and email for valid tokens', async () => {
-    const req = { headers: { authorization: 'Bearer valid.token' } } as Request & { userId?: string; userEmail?: string | null };
+    const req = { headers: { authorization: 'Bearer valid.token' } } as Request & {
+      userId?: string;
+      userEmail?: string | null;
+    };
     vi.mocked(extractBearerToken).mockReturnValue('valid.token');
     vi.mocked(verifyAccessToken).mockResolvedValue({ id: 'user-1', email: 'dev@example.com' });
     const next = vi.fn();

@@ -39,7 +39,11 @@ describe('auth-service', () => {
 
     const result = await register('Dev@Example.com', 'password123');
     expect(upsertProfile).toHaveBeenCalledWith('auth-user-id', 'dev@example.com');
-    expect(result.user).toEqual({ id: 'auth-user-id', email: 'dev@example.com', createdAt: '2025-01-01T00:00:00.000Z' });
+    expect(result.user).toEqual({
+      id: 'auth-user-id',
+      email: 'dev@example.com',
+      createdAt: '2025-01-01T00:00:00.000Z',
+    });
   });
 
   it('maps a supabase signUp error to an AppError', async () => {

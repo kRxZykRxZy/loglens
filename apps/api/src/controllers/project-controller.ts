@@ -1,6 +1,7 @@
 import type { Request, RequestHandler } from 'express';
 import { getProjects, addProject } from '../services/project-service.js';
 import { AppError } from '../errors/app-error.js';
+import { projectName } from '../validators/project.js';
 
 type AuthenticatedRequest = Request & { userId?: string };
 
@@ -20,9 +21,9 @@ export const list: RequestHandler = async (req, res, next) => {
 
 export const create: RequestHandler = async (req, res, next) => {
   try {
-    if (typeof req.body?.name !== 'string' || !req.body.name.trim())
-      throw new AppError(400, 'Project name is required', 'INVALID_PROJECT');
-    res.status(201).json({ project: await addProject(requireUserId(req), req.body.name) });
+    res
+      .status(201)
+      .json({ project: await addProject(requireUserId(req), projectName(req.body?.name)) });
   } catch (e) {
     next(e);
   }

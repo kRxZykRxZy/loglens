@@ -17,7 +17,12 @@ function toJson(entry: LogEntry): string {
   try {
     return JSON.stringify(entry);
   } catch {
-    return JSON.stringify({ ...entry, message: entry.message, level: entry.level, service: entry.service });
+    return JSON.stringify({
+      ...entry,
+      message: entry.message,
+      level: entry.level,
+      service: entry.service,
+    });
   }
 }
 

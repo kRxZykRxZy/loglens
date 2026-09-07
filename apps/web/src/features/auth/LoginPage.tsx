@@ -14,13 +14,17 @@ export function LoginPage() {
     return (
       <div className="mx-auto max-w-sm space-y-3 p-6">
         <p className="text-sm text-red-500">
-          Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in the web app environment.
+          Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in the web
+          app environment.
         </p>
       </div>
     );
   }
 
-  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>, action: 'login' | 'register') {
+  async function handleSubmit(
+    e: React.MouseEvent<HTMLButtonElement>,
+    action: 'login' | 'register',
+  ) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
@@ -53,18 +57,10 @@ export function LoginPage() {
         minLength={8}
       />
       <div className="flex gap-2">
-        <Button
-          type="button"
-          disabled={submitting}
-          onClick={(e) => handleSubmit(e, 'login')}
-        >
+        <Button type="button" disabled={submitting} onClick={(e) => handleSubmit(e, 'login')}>
           Sign in
         </Button>
-        <Button
-          type="button"
-          disabled={submitting}
-          onClick={(e) => handleSubmit(e, 'register')}
-        >
+        <Button type="button" disabled={submitting} onClick={(e) => handleSubmit(e, 'register')}>
           Register
         </Button>
       </div>

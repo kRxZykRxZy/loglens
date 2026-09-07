@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "@heroui/react": "^2.7.8",
+    "@loglens/api-client": "workspace:*",
+    "@loglens/config": "workspace:*",
     "@loglens/shared": "workspace:*",
+    "@loglens/validation": "workspace:*",
     "@supabase/supabase-js": "^2.115.0",
     "@vitejs/plugin-react": "^4.4.1",
     "lucide-react": "^0.468.0",

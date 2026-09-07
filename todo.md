@@ -34,11 +34,11 @@ Status legend:
 - [x] Remove the original monolithic auth module.
 - [x] Remove the original monolithic database module.
 - [x] Add `packages/shared`.
-- [ ] Add `packages/api-client`.
-- [ ] Add `packages/validation`.
-- [ ] Add `packages/config`.
-- [ ] Add package-level README files.
-- [ ] Add dependency policy/documentation.
+- [x] Add `packages/api-client`.
+- [x] Add `packages/validation`.
+- [x] Add `packages/config`.
+- [x] Add package-level README files.
+- [x] Add dependency policy/documentation.
 
 ## Backend foundation
 
@@ -100,12 +100,12 @@ Status legend:
 - [x] Root `lint:fix` script.
 - [x] Root `validate` command foundation.
 - [x] Add test runner.
-- [ ] Add coverage reporting.
-- [ ] Add pre-commit checks.
-- [ ] Add commit message conventions.
-- [ ] Add GitHub Actions CI.
-- [ ] Add dependency update automation.
-- [ ] Add lockfile policy and committed package lock.
+- [x] Add coverage reporting.
+- [x] Add pre-commit checks.
+- [x] Add commit message conventions.
+- [x] Add GitHub Actions CI.
+- [x] Add dependency update automation.
+- [x] Add lockfile policy and committed package lock.
 
 ## Documentation
 

@@ -5,7 +5,10 @@ import { safeUser } from '../utils/safe-user.js';
 import type { AuthUser } from '@loglens/shared';
 
 type RegisterResult = { user: AuthUser };
-type LoginResult = { user: AuthUser; session: { accessToken: string; refreshToken: string; expiresAt: string } };
+type LoginResult = {
+  user: AuthUser;
+  session: { accessToken: string; refreshToken: string; expiresAt: string };
+};
 
 export async function register(email: string, password: string): Promise<RegisterResult> {
   const { data, error } = await supabaseAnon().auth.signUp({ email, password });
@@ -20,18 +23,17 @@ export async function register(email: string, password: string): Promise<Registe
 export async function login(email: string, password: string): Promise<LoginResult> {
   const { data, error } = await supabaseAnon().auth.signInWithPassword({ email, password });
   if (error) throw new AppError(401, 'Invalid credentials', 'INVALID_CREDENTIALS');
-  if (!data.session)
-    throw new AppError(401, 'Invalid credentials', 'INVALID_CREDENTIALS');
+  if (!data.session) throw new AppError(401, 'Invalid credentials', 'INVALID_CREDENTIALS');
 
-const profile = await ensureProfile(data.user.id, data.user.email ?? email);
-    return {
-      user: safeUser(profile),
-      session: {
-        accessToken: data.session.access_token,
-        refreshToken: data.session.refresh_token,
-        expiresAt: new Date((data.session.expires_at ?? 0) * 1000).toISOString(),
-      },
-    };
+  const profile = await ensureProfile(data.user.id, data.user.email ?? email);
+  return {
+    user: safeUser(profile),
+    session: {
+      accessToken: data.session.access_token,
+      refreshToken: data.session.refresh_token,
+      expiresAt: new Date((data.session.expires_at ?? 0) * 1000).toISOString(),
+    },
+  };
 }
 
 export async function logout() {

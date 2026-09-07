@@ -9,11 +9,7 @@ export function Header({ onOpenNav }: { onOpenNav: () => void }) {
   return (
     <header className="flex h-14 items-center justify-between border-b border-[var(--color-border)] px-4 md:px-6">
       <div className="flex items-center gap-2">
-        <button
-          aria-label="Open navigation"
-          className="md:hidden"
-          onClick={onOpenNav}
-        >
+        <button aria-label="Open navigation" className="md:hidden" onClick={onOpenNav}>
           <Menu size={20} />
         </button>
         <span className="text-sm text-[var(--color-muted)]">Developer observability</span>

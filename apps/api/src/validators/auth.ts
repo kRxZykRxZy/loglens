@@ -1,9 +1,11 @@
+import { requireEmail, requirePassword } from '@loglens/validation';
 import { AppError } from '../errors/app-error.js';
+
 export function credentials(body: unknown) {
   const b = body as Record<string, unknown>;
-  if (typeof b.email !== 'string' || !b.email.includes('@'))
-    throw new AppError(400, 'Valid email is required', 'INVALID_EMAIL');
-  if (typeof b.password !== 'string' || b.password.length < 8)
-    throw new AppError(400, 'Password must be at least 8 characters', 'INVALID_PASSWORD');
-  return { email: b.email.trim().toLowerCase(), password: b.password };
+  const email = requireEmail(b.email);
+  if (!email.ok) throw new AppError(400, email.error, 'INVALID_EMAIL');
+  const password = requirePassword(b.password);
+  if (!password.ok) throw new AppError(400, password.error, 'INVALID_PASSWORD');
+  return { email: email.value, password: password.value };
 }

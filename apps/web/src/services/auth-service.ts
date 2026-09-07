@@ -30,9 +30,7 @@ export function toUser(user: { id: string; email?: string | null }): User {
   return { id: user.id, email: user.email ?? '' };
 }
 
-export function onAuthChange(
-  callback: (user: User | null) => void,
-): { unsubscribe: () => void } {
+export function onAuthChange(callback: (user: User | null) => void): { unsubscribe: () => void } {
   if (!supabase) return { unsubscribe: () => {} };
   const {
     data: { subscription },

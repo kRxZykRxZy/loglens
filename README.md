@@ -45,10 +45,18 @@ npm run lint:fix
 npm run format:check
 npm run format:write
 npm test
+npm run test:coverage
 npm run validate
 ```
 
 ESLint is version 9+ using the Flat Config file `eslint.config.mjs`. Do not add legacy `.eslintrc*` or `.eslintignore` configuration.
+
+## Dependency and lockfile policy
+
+- `pnpm-lock.yaml` must always be committed. Install reproducibly with `pnpm install --frozen-lockfile`.
+- Internal packages use the `workspace:*` protocol.
+- Commit messages follow Conventional Commits (`commitlint`); pre-commit hooks run Prettier + ESLint (`husky` + `lint-staged`).
+- New dependencies run through the policy in [`docs/dependencies.md`](./docs/dependencies.md).
 
 ## Production
 
