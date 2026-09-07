@@ -1,4 +1,5 @@
-export type Severity = 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+import type { Severity } from '@loglens/shared';
+
 export type EventInput = {
   message: string;
   severity: Severity;

@@ -1,2 +1,4 @@
-export type User = { id: string; email: string; createdAt?: string };
+import type { AuthUser } from '@loglens/shared';
+
+export type User = AuthUser;
 export type AuthResponse = { user: User };

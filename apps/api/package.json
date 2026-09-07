@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@loglens/shared": "workspace:*",
     "bcryptjs": "^3.0.2",
     "cookie": "^1.0.0",
     "dotenv": "^17.2.1",

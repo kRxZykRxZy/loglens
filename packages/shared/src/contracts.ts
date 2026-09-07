@@ -1,3 +1,4 @@
 export type HealthResponse = { ok: boolean; service: string };
 export type ProjectSummary = { id: string; name: string; createdAt: string };
 export type AuthUser = { id: string; email: string; createdAt?: string };
+export type ErrorEnvelope = { error: string; code?: string };

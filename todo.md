@@ -33,7 +33,7 @@ Status legend:
 - [x] Remove the original monolithic backend entrypoint.
 - [x] Remove the original monolithic auth module.
 - [x] Remove the original monolithic database module.
-- [ ] Add `packages/shared`.
+- [x] Add `packages/shared`.
 - [ ] Add `packages/api-client`.
 - [ ] Add `packages/validation`.
 - [ ] Add `packages/config`.
