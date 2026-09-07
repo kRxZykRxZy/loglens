@@ -120,79 +120,6 @@ Status legend:
 
 ---
 
-# Phase 2 — Database
-
-## PostgreSQL infrastructure
-
-- [x] PostgreSQL pool abstraction.
-- [x] Query abstraction.
-- [x] Transaction abstraction.
-- [x] Migration directory.
-- [x] Core migration.
-- [x] Project migration.
-- [x] API-key migration.
-- [x] Event migration foundation.
-- [x] Event-group migration foundation.
-- [x] Migration metadata table.
-- [x] Idempotent migration runner.
-- [ ] Migration CLI command.
-- [ ] Migration locking.
-- [ ] Migration failure reporting.
-- [ ] Production migration procedure.
-- [ ] Test database bootstrap.
-- [ ] Database reset command for development.
-
-## Schema hardening
-
-- [x] Users table.
-- [x] Sessions table.
-- [x] Projects table.
-- [x] API keys table.
-- [x] Events table foundation.
-- [x] Event groups table foundation.
-- [ ] Alerts table.
-- [ ] Alert deliveries table.
-- [ ] Project members table.
-- [ ] Usage counters table.
-- [ ] Subscriptions table.
-- [ ] Audit log table.
-- [ ] Service/API token table where required.
-- [ ] Foreign-key review.
-- [ ] Unique constraint review.
-- [ ] Check-constraint review.
-- [ ] Index review with realistic query patterns.
-- [ ] Retention/partitioning strategy for high-volume events.
-- [ ] JSON metadata size limits.
-- [ ] Database statement timeout policy.
-- [ ] Connection pool sizing policy.
-
-## Repositories
-
-- [x] User repository.
-- [x] Session repository.
-- [x] Project repository.
-- [x] API-key repository foundation.
-- [x] Event repository foundation.
-- [x] Event-group repository foundation.
-- [ ] Alert repository.
-- [ ] Alert delivery repository.
-- [ ] Usage repository.
-- [ ] Billing repository.
-- [ ] Audit repository.
-- [ ] Membership repository.
-
-## Data lifecycle
-
-- [ ] Event retention worker.
-- [ ] Session expiration cleanup.
-- [ ] API-key revocation semantics.
-- [ ] Orphaned data cleanup.
-- [ ] Database backup procedure.
-- [ ] Restore test procedure.
-- [ ] Disaster recovery runbook.
-
----
-
 # Phase 3 — Authentication and Accounts
 
 ## API
@@ -758,6 +685,38 @@ LogLens uses Supabase as the managed infrastructure backend: Supabase Auth for a
 - [ ] Tune high-volume event queries for Supabase execution plans.
 - [ ] Configure database backups/restores through the Supabase dashboard.
 - [ ] Run migration jobs in CI against the Supabase database.
+
+## Database schema, repositories, and data lifecycle
+
+The Supabase Postgres database owns the tables that exist today (`user_profiles`, `projects`, `api_keys`, `events`, `event_groups`) and the API keeps a repository-per-entity persistence layer. Remaining database-shaped work left over from the retired Phase 2 lives here:
+
+- [ ] Migration CLI command.
+- [ ] Migration locking.
+- [ ] Migration failure reporting.
+- [ ] Production migration procedure.
+- [ ] Test database bootstrap.
+- [ ] Database reset command for development.
+- [ ] Alerts table.
+- [ ] Alert deliveries table.
+- [ ] Project members table.
+- [ ] Usage counters table.
+- [ ] Subscriptions table.
+- [ ] Audit log table.
+- [ ] Service/API token table where required.
+- [ ] Foreign-key review.
+- [ ] Unique constraint review.
+- [ ] Check-constraint review.
+- [ ] Retention/partitioning strategy for high-volume events.
+- [ ] JSON metadata size limits.
+- [ ] Alert repository.
+- [ ] Alert delivery repository.
+- [ ] Usage repository.
+- [ ] Billing repository.
+- [ ] Audit repository.
+- [ ] Membership repository.
+- [ ] Event retention worker.
+- [ ] API-key revocation semantics.
+- [ ] Orphaned data cleanup.
 
 ## Supabase Storage
 
