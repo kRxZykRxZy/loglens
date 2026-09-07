@@ -729,6 +729,58 @@ Status legend:
 
 ---
 
+# Phase 11 — Supabase Infrastructure
+
+LogLens uses Supabase as the managed infrastructure backend: Supabase Auth for authentication, Supabase Postgres for event/log storage, and Supabase Storage for large payloads and attachments.
+
+## Supabase Auth
+
+- [ ] Configure Supabase project and environment credentials.
+- [ ] Upgrade the local bcrypt/session stack to Supabase Auth (sign-up, sign-in, sign-out).
+- [ ] Add a trusted server-side Supabase client (service role) used only by the API.
+- [ ] Add JWT audience/issuer verification middleware.
+- [ ] Reconcile Supabase identities with local LogLens user records.
+- [ ] Define cookie/session behavior on top of Supabase-issued tokens.
+- [ ] Wire password reset through Supabase.
+- [ ] Wire email verification through Supabase.
+- [ ] Support account deletion via Supabase Admin.
+- [ ] Add unauthorized-access tests for Supabase-protected routes.
+- [ ] Add invalid-state tests (expired JWT, revoked user).
+- [ ] Document the Supabase auth flow.
+
+## Supabase Postgres
+
+- [ ] Point the PostgreSQL pool at Supabase Postgres with SSL.
+- [ ] Connect via the Supabase connection pooler (PgBouncer/transaction mode).
+- [ ] Apply migrations to the Supabase-managed database.
+- [ ] Review tables for Row Level Security (RLS) where direct access exists.
+- [ ] Set connection pool sizing and statement timeout policies.
+- [ ] Tune high-volume event queries for Supabase execution plans.
+- [ ] Configure database backups/restores through the Supabase dashboard.
+- [ ] Run migration jobs in CI against the Supabase database.
+
+## Supabase Storage
+
+- [ ] Create storage buckets (e.g., `event-payloads`, `group-snapshots`).
+- [ ] Define bucket-level access policies.
+- [ ] Offload oversized metadata/payloads to Storage instead of JSONB when over the size limit.
+- [ ] Generate short-lived signed URLs for protected reads.
+- [ ] Implement object expiration/retention aligned with plan retention.
+- [ ] Enforce storage quotas per plan.
+- [ ] Track storage usage metrics for billing.
+- [ ] Handle upload failures deterministically in ingestion.
+
+## Migration and operations
+
+- [ ] Update the environment variable inventory for Supabase credentials.
+- [ ] Document local development against the Supabase stack.
+- [ ] Move Supabase secrets to the production secret manager.
+- [ ] Write rollback/restore runbook for Supabase-managed data.
+- [ ] Add a storage and database cost model.
+- [ ] Update `architecture.md` when the Supabase integration lands.
+
+---
+
 # Definition of done
 
 A feature is only considered done when implementation, validation, authorization, error handling, tests, documentation, and production behavior have been addressed. Do not check a box merely because a file or placeholder exists.
