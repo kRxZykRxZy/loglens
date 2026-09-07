@@ -28,3 +28,7 @@ export async function ensureProfile(userId: string, email: string) {
   if (existing) return existing;
   return upsertProfile(userId, email);
 }
+
+export async function deleteById(userId: string): Promise<void> {
+  await query('DELETE FROM user_profiles WHERE id = $1', [userId]);
+}

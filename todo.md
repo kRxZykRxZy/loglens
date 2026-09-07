@@ -136,29 +136,29 @@ Status legend:
 - [x] Secure cookie in production.
 - [x] Session expiry support.
 - [x] Authentication middleware.
-- [ ] Session renewal/rotation policy.
-- [ ] Delete expired sessions.
-- [ ] Login attempt rate limiting.
-- [ ] Registration abuse protection.
-- [ ] Email normalization rules.
-- [ ] Password strength validation.
-- [ ] Password reset flow.
-- [ ] Email verification flow.
-- [ ] Account deletion flow.
-- [ ] Account export flow.
+- [x] Session renewal/rotation policy.
+- [x] Delete expired sessions.
+- [x] Login attempt rate limiting.
+- [x] Registration abuse protection.
+- [x] Email normalization rules.
+- [x] Password strength validation.
+- [x] Password reset flow.
+- [x] Email verification flow.
+- [x] Account deletion flow.
+- [x] Account export flow.
 - [ ] Session management page.
-- [ ] Revoke all sessions.
-- [ ] Authentication audit events.
+- [x] Revoke all sessions.
+- [x] Authentication audit events.
 
 ## Authorization
 
 - [x] Authenticated-user context.
-- [ ] Role model.
+- [x] Role model.
 - [x] Project ownership checks.
-- [ ] Project membership checks.
-- [ ] Organization/team model if required.
-- [ ] Permission matrix.
-- [ ] Authorization tests for every project-scoped endpoint.
+- [x] Project membership checks.
+- [x] Organization/team model if required.
+- [x] Permission matrix.
+- [x] Authorization tests for every project-scoped endpoint.
 
 ## Frontend
 

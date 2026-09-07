@@ -27,3 +27,14 @@ export async function recentEvents(projectId: string, limit = 50) {
     ])
   ).rows;
 }
+
+export async function listByProjectIds(projectIds: string[], limit = 5000) {
+  if (projectIds.length === 0) return [];
+  const placeholders = projectIds.map((_, i) => `$${i + 1}`).join(',');
+  return (
+    await query(
+      `select * from events where project_id in (${placeholders}) order by created_at desc limit $${projectIds.length + 1}`,
+      [...projectIds, limit],
+    )
+  ).rows;
+}
