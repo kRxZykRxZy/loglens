@@ -1,0 +1,1 @@
+export function Sidebar(){return <aside className="w-60 border-r border-white/10 p-4"><strong>LogLens</strong><nav className="mt-8 space-y-2"><div>Overview</div><div>Logs</div><div>Projects</div><div>Settings</div></nav></aside>}
