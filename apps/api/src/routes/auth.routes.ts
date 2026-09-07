@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import express from 'express';
 import { register, login, logout } from '../controllers/auth-controller.js';
 import { me } from '../controllers/me-controller.js';
 import { requireAuth } from '../middleware/require-auth.js';
 export const authRoutes = Router();
+authRoutes.use(express.json({ limit: '256kb' }));
 authRoutes.post('/register', register);
 authRoutes.post('/login', login);
 authRoutes.post('/logout', logout);

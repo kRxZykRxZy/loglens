@@ -51,19 +51,18 @@ Status legend:
 - [x] Not-found middleware.
 - [x] Centralized error middleware.
 - [x] Environment configuration module.
-- [ ] Centralized application logger.
-- [ ] Request logging middleware.
-- [ ] Readiness endpoint.
-- [x] Liveness endpoint.
-- [ ] Graceful shutdown.
-- [ ] Signal handling for SIGTERM/SIGINT.
+- [x] Centralized application logger.
+- [x] Request logging middleware.
+- [x] Readiness endpoint.
+- [x] Graceful shutdown.
+- [x] Signal handling for SIGTERM/SIGINT.
 - [x] Database startup dependency checks.
 - [x] Production static SPA serving from `/`.
 - [x] API-only fallback behavior for `/api/*`.
-- [ ] Compression strategy.
-- [ ] Security headers.
-- [ ] CORS policy.
-- [ ] Request body limits by route type.
+- [x] Compression strategy.
+- [x] Security headers.
+- [x] CORS policy.
+- [x] Request body limits by route type.
 
 ## Frontend foundation
 
