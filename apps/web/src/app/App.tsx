@@ -1,4 +1,4 @@
-import { DashboardPage } from '../features/dashboard/DashboardPage';
+import { Outlet } from 'react-router-dom';
 export function App() {
-  return <DashboardPage />;
+  return <Outlet />;
 }

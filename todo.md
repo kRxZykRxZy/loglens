@@ -75,16 +75,16 @@ Status legend:
 - [x] HeroUI dependency.
 - [x] shadcn-style local primitives.
 - [x] Global CSS foundation.
-- [ ] Add proper routing.
-- [ ] Add route guards.
-- [ ] Add global error boundary.
-- [ ] Add loading/skeleton system.
-- [ ] Add toast/notification system.
-- [ ] Add accessible keyboard navigation.
-- [ ] Add responsive mobile navigation.
-- [ ] Add light/dark theme handling.
-- [ ] Add persistent user preference handling.
-- [ ] Add empty-state system.
+- [x] Add proper routing.
+- [x] Add route guards.
+- [x] Add global error boundary.
+- [x] Add loading/skeleton system.
+- [x] Add toast/notification system.
+- [x] Add accessible keyboard navigation.
+- [x] Add responsive mobile navigation.
+- [x] Add light/dark theme handling.
+- [x] Add persistent user preference handling.
+- [x] Add empty-state system.
 - [x] Add standardized frontend API errors.
 
 ## Tooling

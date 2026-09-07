@@ -1,9 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './app/App';
+import { RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from './lib/theme';
+import { ToastProvider } from './features/notifications/ToastProvider';
+import { router } from './app/router';
 import './styles/globals.css';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <ThemeProvider>
+      <ToastProvider>
+        <RouterProvider router={router} />
+      </ToastProvider>
+    </ThemeProvider>
   </StrictMode>,
 );

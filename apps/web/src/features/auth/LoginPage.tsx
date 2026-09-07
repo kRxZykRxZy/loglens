@@ -27,7 +27,6 @@ export function LoginPage() {
     try {
       if (action === 'login') await login(email, password);
       else await register(email, password);
-      window.location.reload();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {

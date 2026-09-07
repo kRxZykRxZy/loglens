@@ -3,7 +3,7 @@ export function Input(p: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...p}
-      className={`w-full rounded-md border border-white/10 bg-black/20 px-3 py-2 outline-none ${p.className ?? ''}`}
+      className={`w-full rounded-md border border-[var(--color-border)] bg-[var(--color-input-bg)] px-3 py-2 text-[var(--color-fg)] outline-none ${p.className ?? ''}`}
     />
   );
 }
