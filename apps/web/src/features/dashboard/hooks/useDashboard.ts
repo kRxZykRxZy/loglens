@@ -1,0 +1,1 @@
+import {useEffect,useState} from 'react'; export function useDashboard(){const [loading,setLoading]=useState(true); useEffect(()=>{const id=setTimeout(()=>setLoading(false),0); return()=>clearTimeout(id)},[]); return {loading};}
