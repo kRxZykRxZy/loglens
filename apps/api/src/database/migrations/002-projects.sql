@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS projects(id uuid primary key,user_id uuid not null references users(id) on delete cascade,name text not null,created_at timestamptz not null default now()); CREATE INDEX IF NOT EXISTS projects_user_idx ON projects(user_id,created_at desc);
