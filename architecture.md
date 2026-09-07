@@ -131,16 +131,16 @@ Repositories are the persistence boundary. Each aggregate gets its own repositor
 
 ### Database
 
-PostgreSQL is the source of truth.
+PostgreSQL is the source of truth, hosted and managed by Supabase.
 
 Foundational entities:
 
-- `users`
-- `sessions`
+- `user_profiles` (keyed by Supabase Auth user id)
 - `projects`
 - `api_keys`
 - `events`
 - `event_groups`
+- `schema_migrations`
 
 Future entities:
 
@@ -172,20 +172,19 @@ Unexpected errors return a generic message and are logged with request context.
 
 ## 5. Authentication model
 
-Browser authentication uses an opaque random session token stored in an HTTP-only cookie. Only a cryptographic hash of the session token is persisted.
+Authentication is managed by Supabase Auth. Users sign up and sign in with email/password through Supabase. The browser stores the Supabase session (access + refresh tokens); the API never issues its own session cookies.
 
 Flow:
 
 ```text
 Browser
   -> POST /api/auth/login
-  -> AuthService verifies password
-  -> SessionService creates random token
-  -> SessionRepository stores token hash
-  -> Set-Cookie: loglens_session=...
+  -> Supabase Auth signs in the user
+  -> API upserts a user profile keyed by the Supabase Auth user id
+  -> session returned to the browser (Supabase-issued tokens)
 ```
 
-Authenticated requests resolve the cookie to a session and user before protected controllers run.
+Authenticated requests send `Authorization: Bearer <access_token>`. The API verifies the token through the Supabase service-role client (`getUser`) before protected controllers run.
 
 API-key authentication is separate from browser sessions. Project ingestion keys use a dedicated prefix and are stored hashed, never as plaintext.
 

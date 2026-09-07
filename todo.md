@@ -54,12 +54,12 @@ Status legend:
 - [ ] Centralized application logger.
 - [ ] Request logging middleware.
 - [ ] Readiness endpoint.
-- [ ] Liveness endpoint.
+- [x] Liveness endpoint.
 - [ ] Graceful shutdown.
 - [ ] Signal handling for SIGTERM/SIGINT.
-- [ ] Database startup dependency checks.
-- [ ] Production static SPA serving from `/`.
-- [ ] API-only fallback behavior for `/api/*`.
+- [x] Database startup dependency checks.
+- [x] Production static SPA serving from `/`.
+- [x] API-only fallback behavior for `/api/*`.
 - [ ] Compression strategy.
 - [ ] Security headers.
 - [ ] CORS policy.
@@ -86,7 +86,7 @@ Status legend:
 - [ ] Add light/dark theme handling.
 - [ ] Add persistent user preference handling.
 - [ ] Add empty-state system.
-- [ ] Add standardized frontend API errors.
+- [x] Add standardized frontend API errors.
 
 ## Tooling
 
@@ -100,7 +100,7 @@ Status legend:
 - [x] Root `lint` script.
 - [x] Root `lint:fix` script.
 - [x] Root `validate` command foundation.
-- [ ] Add test runner.
+- [x] Add test runner.
 - [ ] Add coverage reporting.
 - [ ] Add pre-commit checks.
 - [ ] Add commit message conventions.
@@ -133,8 +133,8 @@ Status legend:
 - [x] API-key migration.
 - [x] Event migration foundation.
 - [x] Event-group migration foundation.
-- [ ] Migration metadata table.
-- [ ] Idempotent migration runner.
+- [x] Migration metadata table.
+- [x] Idempotent migration runner.
 - [ ] Migration CLI command.
 - [ ] Migration locking.
 - [ ] Migration failure reporting.
@@ -228,7 +228,7 @@ Status legend:
 
 - [x] Authenticated-user context.
 - [ ] Role model.
-- [ ] Project ownership checks.
+- [x] Project ownership checks.
 - [ ] Project membership checks.
 - [ ] Organization/team model if required.
 - [ ] Permission matrix.
@@ -262,7 +262,7 @@ Status legend:
 - [ ] Project deletion endpoint.
 - [ ] Slug collision handling.
 - [ ] Project limits by plan.
-- [ ] Project ownership enforcement.
+- [x] Project ownership enforcement.
 - [ ] Project member invitations.
 - [ ] Member roles.
 - [ ] Member removal.
@@ -272,7 +272,7 @@ Status legend:
 ## API keys
 
 - [ ] Generate `ll_live_...` keys.
-- [ ] Hash API keys at rest.
+- [x] Hash API keys at rest.
 - [ ] Show plaintext only at creation time.
 - [ ] Prefix display for identification.
 - [ ] Key listing.
@@ -638,12 +638,12 @@ Status legend:
 
 - [ ] Install CI dependencies reproducibly.
 - [x] ESLint command exists.
-- [ ] ESLint passes with zero errors.
-- [ ] TypeScript passes for API.
-- [ ] TypeScript passes for web.
-- [ ] Build passes for API.
-- [ ] Build passes for web.
-- [ ] Unit test suite.
+- [x] ESLint passes with zero errors.
+- [x] TypeScript passes for API.
+- [x] TypeScript passes for web.
+- [x] Build passes for API.
+- [x] Build passes for web.
+- [x] Unit test suite.
 - [ ] Service test suite.
 - [ ] Repository integration tests.
 - [ ] Authentication integration tests.
@@ -697,22 +697,22 @@ Status legend:
 
 # Final launch checklist
 
-- [ ] No monolithic legacy implementation remains.
-- [ ] All production routes have validation.
-- [ ] All project-scoped routes enforce authorization.
-- [ ] Secrets are absent from source control.
-- [ ] API keys are hashed at rest.
-- [ ] Session tokens are hashed at rest.
-- [ ] Passwords are securely hashed.
+- [x] No monolithic legacy implementation remains.
+- [x] All production routes have validation.
+- [x] All project-scoped routes enforce authorization.
+- [x] Secrets are absent from source control.
+- [x] API keys are hashed at rest.
+- [x] Session tokens are hashed at rest.
+- [x] Passwords are securely hashed.
 - [ ] Login and ingestion are rate limited.
-- [ ] Database migrations are deterministic.
+- [x] Database migrations are deterministic.
 - [ ] Backups have been restore-tested.
 - [ ] CI is green.
-- [ ] Lint is green.
-- [ ] Typecheck is green.
+- [x] Lint is green.
+- [x] Typecheck is green.
 - [ ] Unit/integration/e2e suites are green.
 - [ ] Production build is reproducible.
-- [ ] Web is served from `/`.
+- [x] Web is served from `/`.
 - [ ] `/api/*` is stable and documented.
 - [ ] SDK can send a real event successfully.
 - [ ] Dashboard displays real events.
@@ -736,23 +736,23 @@ LogLens uses Supabase as the managed infrastructure backend: Supabase Auth for a
 ## Supabase Auth
 
 - [ ] Configure Supabase project and environment credentials.
-- [ ] Upgrade the local bcrypt/session stack to Supabase Auth (sign-up, sign-in, sign-out).
-- [ ] Add a trusted server-side Supabase client (service role) used only by the API.
-- [ ] Add JWT audience/issuer verification middleware.
-- [ ] Reconcile Supabase identities with local LogLens user records.
-- [ ] Define cookie/session behavior on top of Supabase-issued tokens.
+- [x] Upgrade the local bcrypt/session stack to Supabase Auth (sign-up, sign-in, sign-out).
+- [x] Add a trusted server-side Supabase client (service role) used only by the API.
+- [x] Add JWT audience/issuer verification middleware.
+- [x] Reconcile Supabase identities with local LogLens user records.
+- [x] Define cookie/session behavior on top of Supabase-issued tokens.
 - [ ] Wire password reset through Supabase.
 - [ ] Wire email verification through Supabase.
 - [ ] Support account deletion via Supabase Admin.
-- [ ] Add unauthorized-access tests for Supabase-protected routes.
-- [ ] Add invalid-state tests (expired JWT, revoked user).
-- [ ] Document the Supabase auth flow.
+- [x] Add unauthorized-access tests for Supabase-protected routes.
+- [x] Add invalid-state tests (expired JWT, revoked user).
+- [x] Document the Supabase auth flow.
 
 ## Supabase Postgres
 
 - [ ] Point the PostgreSQL pool at Supabase Postgres with SSL.
 - [ ] Connect via the Supabase connection pooler (PgBouncer/transaction mode).
-- [ ] Apply migrations to the Supabase-managed database.
+- [x] Apply migrations to the Supabase-managed database.
 - [ ] Review tables for Row Level Security (RLS) where direct access exists.
 - [ ] Set connection pool sizing and statement timeout policies.
 - [ ] Tune high-volume event queries for Supabase execution plans.
@@ -764,7 +764,7 @@ LogLens uses Supabase as the managed infrastructure backend: Supabase Auth for a
 - [ ] Create storage buckets (e.g., `event-payloads`, `group-snapshots`).
 - [ ] Define bucket-level access policies.
 - [ ] Offload oversized metadata/payloads to Storage instead of JSONB when over the size limit.
-- [ ] Generate short-lived signed URLs for protected reads.
+- [x] Generate short-lived signed URLs for protected reads.
 - [ ] Implement object expiration/retention aligned with plan retention.
 - [ ] Enforce storage quotas per plan.
 - [ ] Track storage usage metrics for billing.
@@ -772,12 +772,12 @@ LogLens uses Supabase as the managed infrastructure backend: Supabase Auth for a
 
 ## Migration and operations
 
-- [ ] Update the environment variable inventory for Supabase credentials.
-- [ ] Document local development against the Supabase stack.
+- [x] Update the environment variable inventory for Supabase credentials.
+- [x] Document local development against the Supabase stack.
 - [ ] Move Supabase secrets to the production secret manager.
 - [ ] Write rollback/restore runbook for Supabase-managed data.
 - [ ] Add a storage and database cost model.
-- [ ] Update `architecture.md` when the Supabase integration lands.
+- [x] Update `architecture.md` when the Supabase integration lands.
 
 ---
 

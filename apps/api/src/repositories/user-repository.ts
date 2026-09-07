@@ -1,17 +1,30 @@
 import { query } from '../database/query.js';
-import type { UserRow } from '../types/user.js';
-export async function findUserByEmail(email: string) {
-  const r = await query<UserRow>('select * from users where email=$1', [email.toLowerCase()]);
+import type { UserProfileRow } from '../types/user.js';
+
+export async function findByEmail(email: string) {
+  const r = await query<UserProfileRow>('select * from user_profiles where email=$1', [
+    email.toLowerCase(),
+  ]);
   return r.rows[0] ?? null;
 }
-export async function findUserById(id: string) {
-  const r = await query<UserRow>('select * from users where id=$1', [id]);
+
+export async function findById(id: string) {
+  const r = await query<UserProfileRow>('select * from user_profiles where id=$1', [id]);
   return r.rows[0] ?? null;
 }
-export async function createUser(id: string, email: string, passwordHash: string) {
-  const r = await query<UserRow>(
-    'insert into users(id,email,password_hash) values($1,$2,$3) returning *',
-    [id, email.toLowerCase(), passwordHash],
+
+export async function upsertProfile(userId: string, email: string) {
+  const r = await query<UserProfileRow>(
+    `insert into user_profiles(id,email) values($1,$2)
+     on conflict(id) do update set email=excluded.email
+     returning *`,
+    [userId, email.toLowerCase()],
   );
   return r.rows[0];
+}
+
+export async function ensureProfile(userId: string, email: string) {
+  const existing = await findById(userId);
+  if (existing) return existing;
+  return upsertProfile(userId, email);
 }

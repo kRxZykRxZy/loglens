@@ -17,6 +17,8 @@
     "build:api": "npm --workspace apps/api run build",
     "start": "node apps/api/dist/index.js",
     "typecheck": "npm --workspace @loglens/shared run typecheck && npm --workspace apps/api run typecheck && npm --workspace apps/web run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format:check": "prettier --check .",
@@ -32,6 +34,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "prettier": "^3.6.2",
-    "typescript-eslint": "^8.43.0"
+    "typescript-eslint": "^8.43.0",
+    "vitest": "^5.0.0"
   }
 }

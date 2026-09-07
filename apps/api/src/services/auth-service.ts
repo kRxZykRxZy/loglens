@@ -1,28 +1,40 @@
-import { randomUUID } from 'node:crypto';
 import { AppError } from '../errors/app-error.js';
-import { hashPassword, verifyPassword } from '../auth/passwords.js';
-import { createToken, hashToken } from '../auth/tokens.js';
-import { createUser, findUserByEmail } from '../repositories/user-repository.js';
-import { createSession } from '../repositories/session-repository.js';
-export async function register(email: string, password: string) {
-  if (await findUserByEmail(email))
-    throw new AppError(409, 'Email already registered', 'EMAIL_EXISTS');
-  const user = await createUser(randomUUID(), email, await hashPassword(password));
-  return issue(user.id, user.email);
+import { supabaseAnon } from '../supabase/clients.js';
+import { ensureProfile, upsertProfile } from '../repositories/user-repository.js';
+import { safeUser } from '../utils/safe-user.js';
+import type { AuthUser } from '@loglens/shared';
+
+type RegisterResult = { user: AuthUser };
+type LoginResult = { user: AuthUser; session: { accessToken: string; refreshToken: string; expiresAt: string } };
+
+export async function register(email: string, password: string): Promise<RegisterResult> {
+  const { data, error } = await supabaseAnon().auth.signUp({ email, password });
+  if (error) throw new AppError(400, error.message, 'REGISTRATION_FAILED');
+  if (!data.user)
+    throw new AppError(400, 'Registration did not return a user', 'REGISTRATION_FAILED');
+
+  const profile = await upsertProfile(data.user.id, data.user.email ?? email);
+  return { user: safeUser(profile) };
 }
-export async function login(email: string, password: string) {
-  const user = await findUserByEmail(email);
-  if (!user || !(await verifyPassword(password, user.password_hash)))
+
+export async function login(email: string, password: string): Promise<LoginResult> {
+  const { data, error } = await supabaseAnon().auth.signInWithPassword({ email, password });
+  if (error) throw new AppError(401, 'Invalid credentials', 'INVALID_CREDENTIALS');
+  if (!data.session)
     throw new AppError(401, 'Invalid credentials', 'INVALID_CREDENTIALS');
-  return issue(user.id, user.email);
+
+const profile = await ensureProfile(data.user.id, data.user.email ?? email);
+    return {
+      user: safeUser(profile),
+      session: {
+        accessToken: data.session.access_token,
+        refreshToken: data.session.refresh_token,
+        expiresAt: new Date((data.session.expires_at ?? 0) * 1000).toISOString(),
+      },
+    };
 }
-async function issue(id: string, email: string) {
-  const token = createToken();
-  await createSession(
-    randomUUID(),
-    id,
-    hashToken(token),
-    new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
-  );
-  return { token, user: { id, email } };
+
+export async function logout() {
+  // Server-side: tokens are self-contained and will expire on their own.
+  // Client clears stored session. Revocation can be added later if needed.
 }
