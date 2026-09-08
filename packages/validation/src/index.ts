@@ -1,4 +1,6 @@
 export type ValidationResult = { ok: true; value: string } | { ok: false; error: string };
+export type NullableValidationResult =
+  { ok: true; value: string | null } | { ok: false; error: string };
 
 export function isEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -29,6 +31,20 @@ export function requireString(
   if (opts.minLength !== undefined && trimmed.length < opts.minLength) {
     return { ok: false, error: `${field} must be at least ${opts.minLength} characters` };
   }
+  if (opts.maxLength !== undefined && trimmed.length > opts.maxLength) {
+    return { ok: false, error: `${field} must be at most ${opts.maxLength} characters` };
+  }
+  return { ok: true, value: trimmed };
+}
+
+export function requireNullableString(
+  value: unknown,
+  field: string,
+  opts: { maxLength?: number; trim?: boolean } = {},
+): NullableValidationResult {
+  if (value === null || value === undefined || value === '') return { ok: true, value: null };
+  if (typeof value !== 'string') return { ok: false, error: `${field} must be a string or null` };
+  const trimmed = opts.trim === false ? value : value.trim();
   if (opts.maxLength !== undefined && trimmed.length > opts.maxLength) {
     return { ok: false, error: `${field} must be at most ${opts.maxLength} characters` };
   }

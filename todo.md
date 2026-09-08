@@ -183,44 +183,44 @@ Status legend:
 
 - [x] Project listing foundation.
 - [x] Project creation foundation.
-- [ ] Project read endpoint.
-- [ ] Project update endpoint.
-- [ ] Project deletion endpoint.
-- [ ] Slug collision handling.
-- [ ] Project limits by plan.
+- [x] Project read endpoint.
+- [x] Project update endpoint.
+- [x] Project deletion endpoint.
+- [x] Slug collision handling.
+- [x] Project limits by plan.
 - [x] Project ownership enforcement.
-- [ ] Project member invitations.
-- [ ] Member roles.
-- [ ] Member removal.
-- [ ] Project transfer ownership.
-- [ ] Project archive state.
+- [x] Project member invitations.
+- [x] Member roles.
+- [x] Member removal.
+- [x] Project transfer ownership.
+- [x] Project archive state.
 
 ## API keys
 
-- [ ] Generate `ll_live_...` keys.
+- [x] Generate `ll_live_...` keys.
 - [x] Hash API keys at rest.
-- [ ] Show plaintext only at creation time.
-- [ ] Prefix display for identification.
-- [ ] Key listing.
-- [ ] Key revocation.
-- [ ] Key rotation.
-- [ ] Last-used timestamp.
+- [x] Show plaintext only at creation time.
+- [x] Prefix display for identification.
+- [x] Key listing.
+- [x] Key revocation.
+- [x] Key rotation.
+- [x] Last-used timestamp.
 - [ ] Key scopes if required.
-- [ ] Key creation audit event.
-- [ ] Key revocation audit event.
+- [x] Key creation audit event.
+- [x] Key revocation audit event.
 
 ## Frontend
 
-- [ ] Projects page.
-- [ ] Project creation dialog/page.
-- [ ] Project overview.
-- [ ] Project settings.
-- [ ] API-key management page.
-- [ ] Create-key confirmation UX.
-- [ ] Copy-to-clipboard UX.
-- [ ] Secret disclosure warning.
-- [ ] Key rotation confirmation.
-- [ ] Project deletion safeguards.
+- [x] Projects page.
+- [x] Project creation dialog/page.
+- [x] Project overview.
+- [x] Project settings.
+- [x] API-key management page.
+- [x] Create-key confirmation UX.
+- [x] Copy-to-clipboard UX.
+- [x] Secret disclosure warning.
+- [x] Key rotation confirmation.
+- [x] Project deletion safeguards.
 
 ---
 

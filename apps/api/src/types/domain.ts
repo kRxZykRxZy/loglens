@@ -5,6 +5,9 @@ export type ProjectMember = {
   projectId: string;
   userId: string;
   role: ProjectRole;
+  status: 'active' | 'pending';
+  invitedBy?: string;
+  invitedEmail?: string;
   createdAt: string;
 };
 

@@ -3,5 +3,5 @@ export type ApiKey = {
   projectId: string;
   name: string;
   prefix: string;
-  createdAt: Date;
+  createdAt: string;
 };

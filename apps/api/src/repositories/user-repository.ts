@@ -32,3 +32,10 @@ export async function ensureProfile(userId: string, email: string) {
 export async function deleteById(userId: string): Promise<void> {
   await query('DELETE FROM user_profiles WHERE id = $1', [userId]);
 }
+
+export async function getPlan(userId: string): Promise<string> {
+  const r = await query<{ plan: string | null }>('select plan from user_profiles where id = $1', [
+    userId,
+  ]);
+  return r.rows[0]?.plan || 'free';
+}
