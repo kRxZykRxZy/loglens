@@ -5,7 +5,8 @@ const NAV_ITEMS = [
   { label: 'Overview', to: '/' },
   { label: 'Logs', to: '/logs' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Settings', to: '/settings' },
+  { label: 'Settings', to: '/account/settings' },
+  { label: 'Sessions', to: '/account/sessions' },
 ];
 
 export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {

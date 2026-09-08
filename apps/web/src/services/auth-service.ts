@@ -22,6 +22,49 @@ export async function logout() {
   await supabase.auth.signOut();
 }
 
+export async function refreshSession(): Promise<User | null> {
+  if (!supabase) return null;
+  const { data, error } = await supabase.auth.getSession();
+  if (error) return null;
+  if (data.session?.user) return toUser(data.session.user);
+  const refreshed = await supabase.auth.refreshSession();
+  if (refreshed.error) return null;
+  return refreshed.data.session?.user ? toUser(refreshed.data.session.user) : null;
+}
+
+export async function sendPasswordReset(email: string) {
+  if (!supabase) throw new Error('Supabase is not configured');
+  return api<void>('/auth/forgot-password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, redirectTo: `${window.location.origin}/reset-password` }),
+  });
+}
+
+export async function resetPassword(password: string) {
+  if (!supabase) throw new Error('Supabase is not configured');
+  const { data, error } = await supabase.auth.updateUser({ password });
+  if (error) throw error;
+  return data;
+}
+
+export async function resendConfirmation(email: string) {
+  if (!supabase) throw new Error('Supabase is not configured');
+  return api<void>('/auth/resend-confirmation', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  });
+}
+
+export async function deleteAccount() {
+  return api<void>('/auth/account', { method: 'DELETE' });
+}
+
+export async function revokeAllSessions() {
+  return api<{ revoked: boolean }>('/auth/sessions/revoke', { method: 'POST' });
+}
+
 export async function me() {
   return api<AuthResponse>('/auth/me');
 }

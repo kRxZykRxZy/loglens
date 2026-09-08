@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { onAuthChange } from '../../../services/auth-service';
+import { onAuthChange, refreshSession } from '../../../services/auth-service';
 import type { User } from '../../../types/auth';
 
 export function useAuth() {
@@ -7,11 +7,21 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let active = true;
+    refreshSession().then((u) => {
+      if (active) {
+        setUser(u);
+        setLoading(false);
+      }
+    });
     const { unsubscribe } = onAuthChange((u) => {
       setUser(u);
       setLoading(false);
     });
-    return unsubscribe;
+    return () => {
+      active = false;
+      unsubscribe();
+    };
   }, []);
 
   return { user, loading };

@@ -4,6 +4,11 @@ import { ErrorBoundary } from '../components/errors/ErrorBoundary';
 import { ProtectedRoute, PublicOnlyRoute } from '../features/auth/guards';
 import { DashboardPage } from '../features/dashboard/DashboardPage';
 import { LoginPage } from '../features/auth/LoginPage';
+import { ForgotPasswordPage } from '../features/auth/ForgotPasswordPage';
+import { ResetPasswordPage } from '../features/auth/ResetPasswordPage';
+import { VerifyEmailPage } from '../features/auth/VerifyEmailPage';
+import { AccountSettingsPage } from '../features/account/AccountSettingsPage';
+import { SessionsPage } from '../features/account/SessionsPage';
 
 export const router = createBrowserRouter([
   {
@@ -11,8 +16,23 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorBoundary />,
     children: [
-      { element: <ProtectedRoute />, children: [{ index: true, element: <DashboardPage /> }] },
-      { element: <PublicOnlyRoute />, children: [{ path: 'login', element: <LoginPage /> }] },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          { index: true, element: <DashboardPage /> },
+          { path: 'account/settings', element: <AccountSettingsPage /> },
+          { path: 'account/sessions', element: <SessionsPage /> },
+        ],
+      },
+      {
+        element: <PublicOnlyRoute />,
+        children: [
+          { path: 'login', element: <LoginPage /> },
+          { path: 'forgot-password', element: <ForgotPasswordPage /> },
+          { path: 'verify-email', element: <VerifyEmailPage /> },
+        ],
+      },
+      { path: 'reset-password', element: <ResetPasswordPage /> },
       { path: '*', element: <Navigate to="/" replace /> },
     ],
   },

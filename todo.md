@@ -146,7 +146,7 @@ Status legend:
 - [x] Email verification flow.
 - [x] Account deletion flow.
 - [x] Account export flow.
-- [ ] Session management page.
+- [x] Session management page.
 - [x] Revoke all sessions.
 - [x] Authentication audit events.
 
@@ -162,18 +162,18 @@ Status legend:
 
 ## Frontend
 
-- [~] Authentication UI foundation.
-- [ ] Login page polished.
-- [ ] Registration page.
-- [ ] Session bootstrap hook.
-- [ ] Logout action.
-- [ ] Auth loading state.
-- [ ] Authenticated route guard.
-- [ ] Forgot password page.
-- [ ] Reset password page.
-- [ ] Verify email page.
-- [ ] Account settings page.
-- [ ] Sessions/security page.
+- [x] Authentication UI foundation.
+- [x] Login page polished.
+- [x] Registration page.
+- [x] Session bootstrap hook.
+- [x] Logout action.
+- [x] Auth loading state.
+- [x] Authenticated route guard.
+- [x] Forgot password page.
+- [x] Reset password page.
+- [x] Verify email page.
+- [x] Account settings page.
+- [x] Sessions/security page.
 
 ---
 

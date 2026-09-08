@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { login, register } from '../../services/auth-service';
@@ -9,6 +10,7 @@ export function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   if (!isSupabaseConfigured) {
     return (
@@ -29,8 +31,15 @@ export function LoginPage() {
     setError(null);
     setSubmitting(true);
     try {
-      if (action === 'login') await login(email, password);
-      else await register(email, password);
+      if (action === 'login') {
+        await login(email, password);
+      } else {
+        const { session } = await register(email, password);
+        if (!session) {
+          navigate(`/verify-email?email=${encodeURIComponent(email)}`);
+          return;
+        }
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -64,6 +73,11 @@ export function LoginPage() {
           Register
         </Button>
       </div>
+      <p className="text-sm">
+        <Link to="/forgot-password" className="underline">
+          Forgot password?
+        </Link>
+      </p>
     </form>
   );
 }
